@@ -36,26 +36,35 @@ class ApiTest extends TestCase
 
     public function testUpdateSingleItem()
     {
-        $item_id = factory(App\Item::class)->make()->id;
+        $item = factory(App\Item::class)->make([
+            'name' => 'Clean',
+            'id' => '1234'
+        ]);    //create new data, bring in data I specify
 
-        $response = $this->get('/api/items/'.$item_id);
+        $response = $this->get('/api/items/'.$item->id);
 
-        $response = assertViewHas($key)
-        $response->('name')
+        $response = assertSee($item) // how to test if item is being returned?
+        //should it be assertViewHas or some other variation to see if 'name' field is returned 
 
-        $response = $this->put('/api/items/'.$item_id);
-        //create, update, check to see if it matches API
+        $response = $this->put('/api/items/'.$item->id, [
+            'name' => 'Shop',
+        ]);
+        //create, update, check to see if it matches API - All tests need to include factory?
 
-        $response->assertStatus(200); //what status code should be placed here?
+        $response = $this->get('/api/items/'.$item->id);
+        
+        $response->assertStatus(200); //what status code should be placed here? not always a 200
 
-        $response->assetJsonStructure(); // why not assertJson
+        $response->assetJson([
+            'name' => 'Shop';
+        ]); // why not assertJson
     }
 
     public function testPostNewItem()  //  create new entry in DB, place all data in necessary locations,make axios call to verify data is there
     {
         $item_id = factory(App\Item::class)->make()->id;
 
-        //what  are you posting? 
+        //what are you posting to DB? 
         $this/*$item_name*/->assertEquals('', $item->name());  //if posting to 'name' the does the factory need to include name?
 
         $response = $this->post('/api/items/'.$item_id);
