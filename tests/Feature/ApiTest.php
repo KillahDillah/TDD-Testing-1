@@ -38,20 +38,17 @@ class ApiTest extends TestCase
 
     public function testUpdate()
     {
-        create, update, check to see if it matches API
+
+        $response = $this->put('/api/items/'.$item_id);
 
         $response->assertStatus(200);
 
         $response->assetJsonStructure();
     }
 
-    public function testPostNewItem()
-    {
-        204
-    }
-
     public function testDeleteItem()
     {
+
         $item_id = factory(App\Item::class)->make()->id;
 
         $response = $this->delete('/api/items/'.$item_id);
