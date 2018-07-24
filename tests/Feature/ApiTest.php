@@ -43,7 +43,7 @@ class ApiTest extends TestCase
 
         $response = $this->get('/api/items/'.$item->id);
 
-        $response = assertSee($item) // how to test if item is being returned?
+        // $response = assertSee($item); // how to test if item is being returned?
         //should it be assertViewHas or some other variation to see if 'name' field is returned 
 
         $response = $this->put('/api/items/'.$item->id, [
@@ -56,8 +56,8 @@ class ApiTest extends TestCase
         $response->assertStatus(200); //what status code should be placed here? not always a 200
 
         $response->assetJson([
-            'name' => 'Shop';
-        ]); // why not assertJson
+            'name' => 'Shop'
+        ]); // why not assertJsonStructure
     }
 
     public function testPostNewItem()  //  create new entry in DB, place all data in necessary locations,make axios call to verify data is there
