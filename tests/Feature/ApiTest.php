@@ -62,12 +62,14 @@ class ApiTest extends TestCase
 
     public function testPostNewItem()  //  create new entry in DB, place all data in necessary locations,make axios call to verify data is there
     {
-        $item_id = factory(App\Item::class)->make()->id;
-
-        //what are you posting to DB? 
-        $this/*$item_name*/->assertEquals('', $item->name());  //if posting to 'name' the does the factory need to include name?
-
-        $response = $this->post('/api/items/'.$item_id);
+        $item = factory(App\Item::class)->make([
+            'post' => 'Im a comment',
+            'id' => '12345'
+        ]);
+        
+        $response = $this->get('/api/items/'.$item->id);
+        
+        $response = assertSee($item->post);
 
     }
 
@@ -81,6 +83,11 @@ class ApiTest extends TestCase
         $response->assertStatus(200);
 
         $response->assetJsonStructure();
+    }
+
+    public function testOpenApp()
+    {
+        $response->assertViewIs('/lists');
     }
 
        
