@@ -49,7 +49,6 @@ class ApiTest extends TestCase
         $response = $this->put('/api/items/'.$item->id, [
             'name' => 'Shop',
         ]);
-        //create, update, check to see if it matches API - All tests need to include factory?
 
         $response = $this->get('/api/items/'.$item->id);
         
@@ -57,7 +56,7 @@ class ApiTest extends TestCase
 
         $response->assetJson([
             'name' => 'Shop'
-        ]); // why not assertJsonStructure
+        ]); // assertJsonStructure?
     }
 
     public function testPostNewItem()  //  create new entry in DB, place all data in necessary locations,make axios call to verify data is there
@@ -73,7 +72,7 @@ class ApiTest extends TestCase
 
     }
 
-    public function testDeleteItem()  // axios call to see if data exists using item_id, remove data from DB using item_id, 
+    public function testDeleteItem() 
     {
 
         $item_id = factory(App\Item::class)->make()->id;
@@ -87,7 +86,8 @@ class ApiTest extends TestCase
 
     public function testOpenApp()
     {
-        $response->assertViewIs('/lists');
+        $response->assertViewIs('/lists', 'ListController@launch'); // route?
+        // does this test need to check data?
     }
 
        
