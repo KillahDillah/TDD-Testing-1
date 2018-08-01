@@ -4,12 +4,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tasks', function() {
-    $tasks = App\Task::all();
-    return view('tasks.index', compact('tasks'));
-});
+Route::get('/items', 'ItemsController@index');
 
-Route::get('/tasks/{task}', function($id) {
-    $tasks = App\Task::find($id);
-    return view('tasks.show', compact('task'));
-});
+Route::get('/items/{item}', 'ItemsController@show');
+
+
+// function($id) {
+//     $tasks = App\Task::find($id);
+//     return view('tasks.show', compact('task'));
+// });

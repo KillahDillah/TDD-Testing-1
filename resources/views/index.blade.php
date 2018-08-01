@@ -10,8 +10,8 @@
 </head> -->
 <body>
     <ul>
-    @foreach ($tasks as $task)
-    <li> {{$task}} </li>
+    @foreach ($items as $item)
+    <li> {{$item}} </li>
     @endeach
     </ul>
 </body>

@@ -4,17 +4,21 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodoTable extends Migration
+class CreateItemTable extends Migration
 {
-
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->text('description');
-            $table->integer('code');
-            $table->text('status');
+            $table->string('code');
+            $table->enum('status', ['active','inactive']);
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateTodoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('items');
     }
 }
