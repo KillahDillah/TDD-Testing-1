@@ -12,7 +12,7 @@ class ApiTest extends TestCase
 
     public function testGetList()
     {
-        $response = $this->get('/items');
+        $response = $this->get('/api/items');
 
         $response->assertStatus(200);
 
@@ -26,7 +26,7 @@ class ApiTest extends TestCase
         
         $item_id = factory(\App\Item::class)->make()->id;
 
-        $response = $this->get('/items/'.$item_id); // pass in id
+        $response = $this->get('/api/items/'.$item_id); // pass in id
 
         $response->assertStatus(200);
 
@@ -41,53 +41,48 @@ class ApiTest extends TestCase
             'id' => '1234'
         ]);    //create new data, bring in data I specify
 
-        $response = $this->get('/items/'.$item->id);
+        $response = $this->get('/api/items/'.$item->id);
 
         // $response = assertSee($item); // how to test if item is being returned?
         //should it be assertViewHas or some other variation to see if 'name' field is returned 
 
-        $response = $this->put('/items/'.$item->id, [
+        $response = $this->put('/api/items/'.$item->id, [
             'name' => 'Shop',
         ]);
 
-        $response = $this->get('/items/'.$item->id);
+        $response = $this->get('/api/items/'.$item->id);
         
         $response->assertStatus(200); //what status code should be placed here? not always a 200
 
-        $response->assetJson([
-            'name' => 'Shop'
+        $response->assetJsonStructure([
+            'name',
+            'description',
+            'code',
+            'status'
+
         ]); // assertJsonStructure?
     }
 
     public function testPostNewItem()  //  create new entry in DB, place all data in necessary locations,make axios call to verify data is there
     {
-        $item = factory(App\Item::class)->make([
-            'post' => 'Im a comment',
-            'id' => '12345'
-        ]);
+        $item = factory(\App\Item::class)->make();
         
-        $response = $this->get('/items/'.$item->id);
+        $response = $this->get('/api/items/'.$item->id);
         
-        $response = assertSee($item->post);
+        $response->assertSee($item->description);
 
     }
 
     public function testDeleteItem() 
     {
 
-        $item_id = factory(App\Item::class)->make()->id;
+        $item_id = factory(\App\Item::class)->make()->id;
 
-        $response = $this->delete('/items/'.$item_id);
+        $response = $this->delete('/api/items/'.$item_id);
 
         $response->assertStatus(200);
 
         // $response->assetJsonStructure();
-    }
-
-    public function testOpenApp()
-    {
-        $response->assertViewIs('/lists', 'ListController@launch'); // route?
-        // does this test need to check data?
     }
 
        

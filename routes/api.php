@@ -17,4 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/api/items', 'ItemsController@index');
+Route::get('/items', 'ItemsController@index');
+
+Route::get('/items/{item}', 'ItemsController@show');
+
+Route::get('/items/{item}', 'ItemsController@update');
+
+Route::put('/items/{item}', 'ItemsController@update');
+
+Route::get('/items/{item}', 'ItemsController@post');
+
+Route::delete('/items/{item}', 'ItemsController@post');
