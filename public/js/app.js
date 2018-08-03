@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(39);
+module.exports = __webpack_require__(43);
 
 
 /***/ }),
@@ -13876,7 +13876,7 @@ module.exports = __webpack_require__(39);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ItemList__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ItemList__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ItemList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ItemList__);
 
 __webpack_require__(13);
@@ -47163,24 +47163,14 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 /* 39 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(45)
+var normalizeComponent = __webpack_require__(40)
 /* script */
-var __vue_script__ = __webpack_require__(46)
+var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(47)
+var __vue_template__ = __webpack_require__(42)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47219,7 +47209,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 45 */
+/* 40 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47328,11 +47318,12 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 46 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -47353,33 +47344,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // },
     mounted: function mounted() {
         console.log('Im the parent');
+    },
+
+    methods: {
+        onClick: function onClick() {
+            alert('push it real good');
+        }
     }
 });
 
 /***/ }),
-/* 47 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "data-table" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row justify-content-center" }, [
-          _c("h1", [_vm._v("Testing")])
+  return _c("div", { staticClass: "data-table" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("h1", [_vm._v("Testing")]),
+        _vm._v(" "),
+        _c("button", { attrs: { id: "button" }, on: { click: _vm.onClick } }, [
+          _vm._v("Click Me")
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -47388,6 +47382,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-5f2ec708", module.exports)
   }
 }
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
