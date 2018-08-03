@@ -9,19 +9,21 @@ class ItemsController extends Controller
 {
     public function index() {
         // $items = Item::find($id);
-        // Item::active();
+        // Item::allItems();
         return view('item.show'); 
     }
     // public function create(){
 
     // }
-    public function store(Item $item) {
-        Item::storeItem();
-    }
+    // public function store(Item $item) {
+    //     $this = Item::store($id);
+    //     return response($this->format($response), 200);
+    // }
     public function show(Item $item) {
         // $items = DB::table('items')->find($id);
         Item::activeItems();
-       return response($this->$item, 200);
+
+        return response($this->format($response), 200);
         // $items = \App\Item::find($id);
         // return view('item.show');
     }

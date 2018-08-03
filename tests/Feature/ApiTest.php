@@ -39,12 +39,9 @@ class ApiTest extends TestCase
         $item = factory(\App\Item::class)->make([
             'name' => 'Clean',
             'id' => '1234',
-            // 'description' => 'description',
-            // 'code' => 'code',
-            // 'status' => 'active'
         ]);    //create new data, bring in data I specify
-            
-        $response = $this->post('/api/items/'.$item->id);
+        
+        $response = $this->get('/api/items/'.$item->id);
 
         $response->assertStatus(200);
         // $response = assertSee($item); // how to test if item is being returned?
@@ -72,7 +69,7 @@ class ApiTest extends TestCase
     {
         $item = factory(\App\Item::class)->make();
         
-        $response = $this->get('/api/items/'.$item->id);
+        $response = $this->get('/api/items/'.$item);
         
         $response->assertSee($item->description);
 
