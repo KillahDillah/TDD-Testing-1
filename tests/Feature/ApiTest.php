@@ -41,11 +41,13 @@ class ApiTest extends TestCase
             'id' => '1234'
         ]);    //create new data, bring in data I specify
 
-        $response = $this->get('/api/items/'.$item->id);
+        $response = $this->get('/api/items/create');
+        $response = $this->post('/api/items/'.$item->id);
 
-        // $response->assertStatus(200);
+        $response->assertStatus(200);
         // $response = assertSee($item); // how to test if item is being returned?
         //should it be assertViewHas or some other variation to see if 'name' field is returned 
+        $response = $this->get('/api/items/'.$item->id);
 
         $response = $this->put('/api/items/'.$item->id, [
             'name' => 'Shop',
