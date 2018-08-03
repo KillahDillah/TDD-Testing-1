@@ -1,9 +1,10 @@
 <template>
-    <h1>Single Items</h1>
+
 </template>
 
 <script>
     export default {
+        name: "SingleItemList",
         mounted() {
             console.log('Component mounted.')
         }
