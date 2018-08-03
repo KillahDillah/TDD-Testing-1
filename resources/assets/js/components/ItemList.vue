@@ -3,16 +3,21 @@
         <div class="container">
             <div class="row justify-content-center">
                 <h1>Testing</h1>
+                <!-- <single-item-list></single-item-list> -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
+// import SingleItemList from './components/SingleItemList';
     export default {
-        name:'items',
+        name:'itemList',
+        // components: {
+        //     SingleItemList,
+        // },
         mounted() {
-            console.log('Component mounted.')
+            console.log('Im the parent')
         }
     }
 </script>

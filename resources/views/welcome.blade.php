@@ -61,7 +61,7 @@
     </head>
     <body>
         <div id='app'>
-            <h1>hello</h1>
+            <h1>items</h1>
         <item-list></item-list>
         </div>   
 
