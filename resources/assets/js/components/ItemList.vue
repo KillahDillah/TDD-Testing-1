@@ -10,8 +10,10 @@
 
 <script>
     export default {
+        name:'items',
         mounted() {
             console.log('Component mounted.')
         }
     }
 </script>
+

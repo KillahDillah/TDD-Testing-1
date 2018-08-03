@@ -57,12 +57,11 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
-        </style>
-        <script src="/js/app.js"></script>  
+        </style> 
     </head>
     <body>
-        <div id='root'>
-        <h1>hello</h1>
+        <div id='app'>
+            <h1>hello</h1>
         <item-list></item-list>
         </div>   
 

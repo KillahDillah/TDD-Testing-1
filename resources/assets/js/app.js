@@ -1,21 +1,12 @@
+
 require('./bootstrap');
 
-import Vue from 'vue'
-import ItemList from './components/ItemList'
+window.Vue = require('vue');
 
+// import ItemList from './components/ItemList';
+Vue.component('itemlist', ItemList);
 
 new Vue({
-    el: '#root',
-    data: {
-
-    },
-    mounted() {
-
-    },
-    component: {
-        ItemList
-    },
-    methods:{
-
-    }
+    el: '#app',
+    components: { ItemList },
 });
