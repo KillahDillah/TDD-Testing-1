@@ -11,12 +11,12 @@ class ItemsController extends Controller
         // Item::active();
         return view('item.show'); 
     }
-    public function create(){
-
-    }
-    // public function store() {
+    // public function create(){
 
     // }
+    public function store() {
+
+    }
     public function show($id) {
         // $items = \App\Item::find($id);
         return view('item.show');

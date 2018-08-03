@@ -38,10 +38,12 @@ class ApiTest extends TestCase
     {
         $item = factory(\App\Item::class)->make([
             'name' => 'Clean',
-            'id' => '1234'
+            // 'id' => '1234',
+            // 'description' => 'description',
+            // 'code' => 'code',
+            // 'status' => 'active'
         ]);    //create new data, bring in data I specify
-
-        $response = $this->get('/api/items/create');
+            
         $response = $this->post('/api/items/'.$item->id);
 
         $response->assertStatus(200);
