@@ -1,30 +1,23 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Item;
+use App\Http\Controllers;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('/items', 'ItemsController@index');
 
-Route::get('/items/{item}', 'ItemsController@show');
+Route::get('/items/create', 'ItemsController@create');
 
-Route::get('/items/{item}', 'ItemsController@update');
+Route::get('/items', 'ItemsController@store');
 
-Route::put('/items/{item}', 'ItemsController@update');
+Route::put('/items/{item}', 'ItemsController@show');
 
-Route::get('/items/{item}', 'ItemsController@post');
+Route::get('/items/{item}/edit', 'ItemsController@edit');
 
-Route::delete('/items/{item}', 'ItemsController@post');
+Route::delete('/items/{item}', 'ItemsController@update');
+
+Route::delete('/items/{item}', 'ItemsController@delete');

@@ -43,6 +43,7 @@ class ApiTest extends TestCase
 
         $response = $this->get('/api/items/'.$item->id);
 
+        // $response->assertStatus(200);
         // $response = assertSee($item); // how to test if item is being returned?
         //should it be assertViewHas or some other variation to see if 'name' field is returned 
 
@@ -52,9 +53,9 @@ class ApiTest extends TestCase
 
         $response = $this->get('/api/items/'.$item->id);
         
-        $response->assertStatus(200); //what status code should be placed here? not always a 200
+        // $response->assertStatus(200); //what status code should be placed here? not always a 200
 
-        $response->assetJsonStructure([
+        $response->assertJsonStructure([
             'name',
             'description',
             'code',
@@ -80,7 +81,7 @@ class ApiTest extends TestCase
 
         $response = $this->delete('/api/items/'.$item_id);
 
-        $response->assertStatus(200);
+        $response->assertStatus(404);
 
         // $response->assetJsonStructure();
     }
