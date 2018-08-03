@@ -10,35 +10,29 @@ class ItemsController extends Controller
     public function index() {
         return view('item.show'); 
     }
-    // public function create(){
 
-    // }
     public function show($item)
     {
         return $item;
     }
 
-    public function store(Item $items)
+    public function store(Request $request)
     {
-        $item = Item::create($item->all());
-
+        $item = Item::create($request->all());
         return response()->json($item, 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        $item = Item::findOrFail($id);
         $item->update($request->all());
-
-        return $item;
+        return response()->json($item, 200);
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Item $item)
     {
-        $item = Item::findOrFail($id);
-        $item->delete();
+        $item = Item::delete($item);
 
-        return 204;
+        return response()->json(null, 204);
     }
 
     // public function store(CreateArticleRequest $request) {

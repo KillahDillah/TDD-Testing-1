@@ -46,18 +46,20 @@ class ApiTest extends TestCase
         $response->assertStatus(200);
         // $response = assertSee($item); // how to test if item is being returned?
         //should it be assertViewHas or some other variation to see if 'name' field is returned 
-        $response = $this->get('/api/items/'.$item);
+        $response = $this->get('/api/items/'.$item->id);
 
         $response = $this->put('/api/items/'.$item->id, [
             'name' => 'Shop',
+            'id' => '1234',
         ]);
 
-        $response = $this->get('/api/items/'.$item->id);
+        // $response = $this->get('/api/items/'.$item->id);
         
         $response->assertStatus(200); //what status code should be placed here? not always a 200
 
-        $response->assertJson([
-            'name' => 'Shop',
+        $response->assertJsonStructure([
+            'name',
+            'id',
         ]); // assertJsonStructure?
     }
 
@@ -67,18 +69,20 @@ class ApiTest extends TestCase
         
         $response = $this->get('/api/items/'.$item);
         
-        $response->assertSee($item->description);
+        $response->assertSee($item->name);
 
     }
 
     public function testDeleteItem() 
     {
 
-        $item_id = factory(\App\Item::class)->make()->id;
+        $item = factory(\App\Item::class)->make();
 
-        $response = $this->delete('/api/items/'.$item_id);
+        $response = $this->get('/api/items/'.$item);
 
-        $response->assertStatus(200);
+        $response = $this->delete('/api/items/'.$item->id);
+
+        $response->assertStatus(204);
 
         // $response->assetJsonStructure();
     }
