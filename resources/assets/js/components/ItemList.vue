@@ -1,19 +1,10 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        <div id="root">
-
-                        </div>
-                    </div>
-                </div>
+    <div class='data-table'>
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1>Testing</h1>
             </div>
         </div>
-
     </div>
 </template>
 

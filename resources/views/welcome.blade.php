@@ -58,13 +58,16 @@
                 margin-bottom: 30px;
             }
         </style>
+        <script src="/js/app.js"></script>  
     </head>
     <body>
         <div id='root'>
-            
-        </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-    <script src="/js/app.js"></script>  
+        <h1>hello</h1>
+        <item-list></item-list>
+        </div>   
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
+        <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+        <script src="/js/app.js"></script>  
     </body>
 </html>
