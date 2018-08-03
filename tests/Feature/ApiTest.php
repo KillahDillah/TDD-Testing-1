@@ -51,11 +51,9 @@ class ApiTest extends TestCase
         $response = $this->put('/api/items/'.$item->id, [
             'name' => 'Shop',
             'id' => '1',
-        ]);
-
-        // $response = $this->get('/api/items/'.$item->id);
-        
-        // $response->assertStatus(200); //what status code should be placed here? not always a 200
+        ]);   
+             
+        $response->assertStatus(200); //what status code should be placed here? not always a 200
 
         $response->assertJsonStructure([
             'name',
@@ -75,24 +73,10 @@ class ApiTest extends TestCase
 
     public function testDeleteItem() 
     {
-
         $item = factory(\App\Item::class)->make();
 
-        $response = $this->get('/api/items/'.$item);
-
-        $response = $this->delete('/api/items/'.$item->id);
+        $response = $this->delete('/api/items/'.$item);
 
         $response->assertStatus(204);
-
-        // $response->assetJsonStructure();
     }
-
-       
-// Load a list of stuff
-// Load a single item
-// Put and update
-// Post a new one
-// Delete
-// Open a page www.myapp.com/lists
-
 }

@@ -23,18 +23,21 @@ class ItemsController extends Controller
         return response()->json($item, 200);
     }
 
-    public function update(Request $request, $item_id)
+    public function update(Request $request, Item $item)
     {
-        $item = Item::findOrFail($item_id);
         $item->update($request->all());
 
-        return $item;
+        return response()->json($item, 200);
     }
 
+    // public function delete(Item $item)
+    // {
+    //     $item->delete();
+    //     return response()->json(null, 204);
+    // }
     public function delete(Item $item)
     {
-        $item = Item::delete($item);
-
+        $item->delete();
         return response()->json(null, 204);
     }
 
