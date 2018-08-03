@@ -28,10 +28,4 @@ class ItemsController extends Controller
         $item->update($request->all());
         return response()->json($item, 200);
     }
-
-    public function delete(Item $item)
-    {
-        $item = Item::inactiveItem($item_id);
-        return response()->json(null, 204);
-    }
 }
