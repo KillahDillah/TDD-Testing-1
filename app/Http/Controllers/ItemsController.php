@@ -9,7 +9,7 @@ class ItemsController extends Controller
 {
 
     public function index() {
-        return view('item.show'); 
+        return view('welcome'); 
     }
 
     public function show($item)
