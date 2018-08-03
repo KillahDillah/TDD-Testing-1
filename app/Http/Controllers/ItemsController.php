@@ -17,7 +17,7 @@ class ItemsController extends Controller
         return $item;
     }
 
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $item = Item::create($request->all());
         return response()->json($item, 200);
@@ -26,22 +26,12 @@ class ItemsController extends Controller
     public function update(Request $request, Item $item)
     {
         $item->update($request->all());
-
         return response()->json($item, 200);
     }
 
-    // public function delete(Item $item)
-    // {
-    //     $item->delete();
-    //     return response()->json(null, 204);
-    // }
     public function delete(Item $item)
     {
-        $item->delete();
+        $item = Item::inactiveItem($item_id);
         return response()->json(null, 204);
     }
-
-    // public function store(CreateArticleRequest $request) {
-    //     return Article::create($request->all());
-    // }
 }

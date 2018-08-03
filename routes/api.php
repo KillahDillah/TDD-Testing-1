@@ -10,13 +10,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/items', 'ItemsController@index');
 
-// Route::get('/items/create', 'ItemsController@create');
-
-Route::post('/items/{item}', 'ItemsController@store');
+Route::post('/items/{item}', 'ItemsController@create');
 
 Route::get('/items/{item}', 'ItemsController@show');
-
-// Route::get('/items/{item}/edit', 'ItemsController@edit');
 
 Route::put('/items/{item}', 'ItemsController@update');
 
