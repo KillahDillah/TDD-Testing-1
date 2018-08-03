@@ -7,6 +7,7 @@ use App\Item;
 
 class ItemsController extends Controller
 {
+
     public function index() {
         return view('item.show'); 
     }
@@ -22,10 +23,12 @@ class ItemsController extends Controller
         return response()->json($item, 200);
     }
 
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $item_id)
     {
+        $item = Item::findOrFail($item_id);
         $item->update($request->all());
-        return response()->json($item, 200);
+
+        return $item;
     }
 
     public function delete(Item $item)

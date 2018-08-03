@@ -38,7 +38,7 @@ class ApiTest extends TestCase
     {
         $item = factory(\App\Item::class)->make([
             'name' => 'Clean',
-            'id' => '1234',
+            'id' => '1',
         ]);    //create new data, bring in data I specify
         
         $response = $this->get('/api/items/'.$item->id);
@@ -50,12 +50,12 @@ class ApiTest extends TestCase
 
         $response = $this->put('/api/items/'.$item->id, [
             'name' => 'Shop',
-            'id' => '1234',
+            'id' => '1',
         ]);
 
         // $response = $this->get('/api/items/'.$item->id);
         
-        $response->assertStatus(200); //what status code should be placed here? not always a 200
+        // $response->assertStatus(200); //what status code should be placed here? not always a 200
 
         $response->assertJsonStructure([
             'name',
