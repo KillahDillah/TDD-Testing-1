@@ -38,7 +38,7 @@ class ApiTest extends TestCase
     {
         $item = factory(\App\Item::class)->make([
             'name' => 'Clean',
-            // 'id' => '1234',
+            'id' => '1234',
             // 'description' => 'description',
             // 'code' => 'code',
             // 'status' => 'active'
@@ -85,7 +85,7 @@ class ApiTest extends TestCase
 
         $response = $this->delete('/api/items/'.$item_id);
 
-        $response->assertStatus(404);
+        $response->assertStatus(200);
 
         // $response->assetJsonStructure();
     }

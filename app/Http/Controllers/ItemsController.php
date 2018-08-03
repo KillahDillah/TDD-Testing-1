@@ -15,12 +15,15 @@ class ItemsController extends Controller
     // public function create(){
 
     // }
-    public function store() {
-
+    public function store(Item $item) {
+        Item::storeItem();
     }
-    public function show($id) {
+    public function show(Item $item) {
+        // $items = DB::table('items')->find($id);
+        Item::activeItems();
+       return response($this->$item, 200);
         // $items = \App\Item::find($id);
-        return view('item.show');
+        // return view('item.show');
     }
     // public function edit() {
 
