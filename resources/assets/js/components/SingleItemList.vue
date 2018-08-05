@@ -1,5 +1,5 @@
 <template>
-
+    <h1>Single Item List</h1>
 </template>
 
 <script>
