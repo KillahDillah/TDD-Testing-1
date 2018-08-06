@@ -12,11 +12,9 @@
                         </b-btn>
                     </li>
                 </ul>
-                <b-modal :results='results' id="modal1" ref="myModalRef" title={item.name}>
-                    <b-form-input 
-                    type="text"
-                    placeholder="Enter your name"></b-form-input>
-                    <p class="my-4">Hello from modal!</p>
+                <b-modal id="modal1" ref="myModalRef" title='this.name'>
+                    <b-form-input type="text" v-model="name"></b-form-input>
+                    <p class="my-4">{{this.name}}</p>
                 </b-modal>
             </div>
         </div>
@@ -32,12 +30,11 @@
         // },
         data() {
             return {
-                results: {
-                    name: '',
-                    id: '',
-                    code: '',
-                    description: '',
-                }
+                results: '',
+                name: '',
+                id: '',
+                code: '',
+                description: '',
             }
         },
         mounted() {
@@ -50,8 +47,8 @@
         },
         methods: {
             onClick(item) {
-                console.log(item.name)
-                this.$refs.myModalRef.show(item)
+                this.name = item.name
+                this.$refs.myModalRef.show(this.name)
     },
             onSubmit() {
                 this.$refs.myModalRef.show()

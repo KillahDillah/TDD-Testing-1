@@ -53585,8 +53585,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 // import SingleItemList from './SingleItemList';
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53596,12 +53594,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     // },
     data: function data() {
         return {
-            results: {
-                name: '',
-                id: '',
-                code: '',
-                description: ''
-            }
+            results: '',
+            name: '',
+            id: '',
+            code: '',
+            description: ''
         };
     },
     mounted: function mounted() {
@@ -53615,8 +53612,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onClick: function onClick(item) {
-            console.log(item.name);
-            this.$refs.myModalRef.show(item);
+            this.name = item.name;
+            this.$refs.myModalRef.show(this.name);
         },
         onSubmit: function onSubmit() {
             this.$refs.myModalRef.show();
@@ -53679,20 +53676,20 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-modal",
-            {
-              ref: "myModalRef",
-              attrs: {
-                results: _vm.results,
-                id: "modal1",
-                title: "{item.name}"
-              }
-            },
+            { ref: "myModalRef", attrs: { id: "modal1", title: "this.name" } },
             [
               _c("b-form-input", {
-                attrs: { type: "text", placeholder: "Enter your name" }
+                attrs: { type: "text" },
+                model: {
+                  value: _vm.name,
+                  callback: function($$v) {
+                    _vm.name = $$v
+                  },
+                  expression: "name"
+                }
               }),
               _vm._v(" "),
-              _c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])
+              _c("p", { staticClass: "my-4" }, [_vm._v(_vm._s(this.name))])
             ],
             1
           )
