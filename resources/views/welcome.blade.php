@@ -63,9 +63,7 @@
     <body>
         <div id='app'>
             <h1>Welcome page</h1>
-            <ul>
-                <li v-for="item in items" v-text="item.name"></li>
-            </ul>
+
         <item-list></item-list>
         </div>   
 

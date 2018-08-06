@@ -1,18 +1,22 @@
 <template>
 <div>
-    <h1>Single Item List</h1>
-    <!-- <ul v-for="item in items">
-        <li> {{item.name}} </li>
-    </ul> -->
+<p>hello</p>
+<!-- <p>{{this.results.name.name}}</p> -->
 </div>
+
 </template>
 
 <script>
     export default {
         name: "SingleItemList",
-        // data: {
-
-        // },
+        props: ["results"],
+        data() {
+            return {
+                name: 'results name',
+                id: '',
+                code: ''
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         },

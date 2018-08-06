@@ -20238,10 +20238,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_boot
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     template: '<ItemList/>',
-    components: { ItemList: __WEBPACK_IMPORTED_MODULE_1__components_ItemList___default.a },
-    data: {
-        items: [{ name: 'Leah', description: 'yesh' }, { name: 'Mila', description: 'no' }, { name: 'Cat', description: 'sup' }]
-    }
+    components: { ItemList: __WEBPACK_IMPORTED_MODULE_1__components_ItemList___default.a }
 });
 
 /***/ }),
@@ -53594,6 +53591,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53603,7 +53604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            results: null
+            results: ''
         };
     },
     mounted: function mounted() {
@@ -53611,13 +53612,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('/api').then(function (response) {
             _this.results = response.data;
-            console.log(response.data);
+            // console.log('itemlist',response.data)
         });
-        console.log('Im the parent');
     },
 
     methods: {
         onClick: function onClick() {
+            this.$refs.myModalRef.show();
+        },
+        onSubmit: function onSubmit() {
             this.$refs.myModalRef.show();
         }
     }
@@ -53684,13 +53687,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "SingleItemList",
-    // data: {
-
-    // },
+    props: ["results"],
+    data: function data() {
+        return {
+            name: 'results name',
+            id: '',
+            code: ''
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
     },
@@ -53713,7 +53720,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("Single Item List")])])
+    return _c("div", [_c("p", [_vm._v("hello")])])
   }
 ]
 render._withStripped = true
@@ -53735,50 +53742,58 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "data-table" }, [
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("h1", [_vm._v("Item List View")]),
-        _vm._v(" "),
-        _c(
-          "ul",
-          _vm._l(_vm.results, function(name) {
-            return _c("li", [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(name.name) +
-                  "\n                "
+      _c(
+        "div",
+        { staticClass: "col justify-content-center" },
+        [
+          _c("h1", [_vm._v("Item List View")]),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "text" } }),
+          _vm._v(" "),
+          _c("b-btn", { on: { click: _vm.onSubmit } }, [_vm._v("Add")]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            _vm._l(_vm.results, function(name) {
+              return _c(
+                "li",
+                { staticStyle: { "list-style-type": "none" } },
+                [
+                  _c("b-btn", { on: { click: _vm.onClick } }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(name.name) +
+                        "\n                    "
+                    )
+                  ])
+                ],
+                1
               )
-            ])
-          })
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          [
-            _c("b-btn", { on: { click: _vm.onClick } }, [
-              _vm._v("Launch demo modal")
-            ]),
-            _vm._v(" "),
-            _c(
-              "b-modal",
-              {
-                ref: "myModalRef",
-                attrs: { id: "modal1", title: "Bootstrap-Vue" }
-              },
-              [
-                _c("single-item-list"),
-                _vm._v(" "),
-                _c("b-form-input", {
-                  attrs: { type: "text", placeholder: "Enter your name" }
-                }),
-                _vm._v(" "),
-                _c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])
-              ],
-              1
-            )
-          ],
-          1
-        )
-      ])
+            })
+          ),
+          _vm._v(" "),
+          _c(
+            "b-modal",
+            {
+              ref: "myModalRef",
+              attrs: { id: "modal1", title: "{name.name}" }
+            },
+            [
+              _c("single-item-list", { attrs: { results: _vm.results } }),
+              _vm._v(" "),
+              _c("b-form-input", {
+                attrs: { type: "text", placeholder: "Enter your name" }
+              }),
+              _vm._v(" "),
+              _c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div")
+        ],
+        1
+      )
     ])
   ])
 }

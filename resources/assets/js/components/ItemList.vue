@@ -1,23 +1,27 @@
 <template>
     <div class='data-table'>
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="col justify-content-center">
                 <h1>Item List View</h1>
+                <input type="text">
+                <b-btn @click="onSubmit">Add</b-btn>
                 <ul>
-                    <li v-for="name in results">
-                        {{name.name}}
+                    <li v-for="name in results" style="list-style-type: none;">
+                        <b-btn @click="onClick">
+                            {{name.name}}
+                        </b-btn>
                     </li>
                 </ul>
-                
+                <b-modal id="modal1" ref="myModalRef" title="{name.name}">
+                    <single-item-list :results='results'></single-item-list>
+                            <b-form-input 
+                            type="text"
+                            placeholder="Enter your name"></b-form-input>
+                        <p class="my-4">Hello from modal!</p>
+                    </b-modal>
                 <div>
-                    <b-btn @click="onClick">Launch demo modal</b-btn>
-                        <b-modal id="modal1" ref="myModalRef" title="Bootstrap-Vue">
-                            <single-item-list></single-item-list>
-                                <b-form-input 
-                                type="text"
-                                placeholder="Enter your name"></b-form-input>
-                            <p class="my-4">Hello from modal!</p>
-                        </b-modal>
+                    <!-- <b-btn @click="onClick">Launch demo modal</b-btn> -->
+                    
                 </div>
             </div>
         </div>
@@ -33,7 +37,7 @@ import SingleItemList from './SingleItemList';
         },
         data() {
             return {
-                results: null
+                results: '',
             }
         },
         mounted() {
@@ -41,15 +45,16 @@ import SingleItemList from './SingleItemList';
             .get('/api')
             .then(response => {
                 this.results = response.data
-                console.log(response.data)
+                // console.log('itemlist',response.data)
             })
-            console.log('Im the parent')
         },
         methods: {
             onClick() {
                 this.$refs.myModalRef.show()
             },
-
+            onSubmit() {
+                this.$refs.myModalRef.show()
+            }
         }
     }
 </script>
