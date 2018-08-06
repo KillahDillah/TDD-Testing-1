@@ -5,7 +5,7 @@
                 <h1>Item List View</h1>
                 <ul>
                     <li v-for="name in results">
-                        {{name}}
+                        {{name.name}}
                     </li>
                 </ul>
                 

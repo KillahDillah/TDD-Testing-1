@@ -53743,7 +53743,9 @@ var render = function() {
           _vm._l(_vm.results, function(name) {
             return _c("li", [
               _vm._v(
-                "\n                    " + _vm._s(name) + "\n                "
+                "\n                    " +
+                  _vm._s(name.name) +
+                  "\n                "
               )
             ])
           })
