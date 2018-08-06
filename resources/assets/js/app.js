@@ -1,7 +1,6 @@
 
 require('./bootstrap');
 import Vue from 'vue'
-Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 // window.Vue = require('vue');

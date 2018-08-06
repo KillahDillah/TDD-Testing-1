@@ -1,7 +1,7 @@
 <template>
 <div>
 
-<p>{{props.results.name}}</p>
+<p :results="results">{{props.results.name}}</p>
 </div>
 
 </template>
@@ -10,13 +10,6 @@
     export default {
         name: "SingleItemList",
         props: ["results"],
-        data() {
-            return {
-                name: '',
-                id: '',
-                code: ''
-            }
-        },
         mounted() {
             console.log(props.results)
         },

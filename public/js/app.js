@@ -20226,7 +20226,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__(76);
 
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_bootstrap_vue__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
 
 // window.Vue = require('vue');
@@ -53563,13 +53562,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SingleItemList__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__SingleItemList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__SingleItemList__);
-//
-//
-//
-//
-//
 //
 //
 //
@@ -53596,15 +53588,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-
+// import SingleItemList from './SingleItemList';
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'ItemList',
-    components: {
-        SingleItemList: __WEBPACK_IMPORTED_MODULE_0__SingleItemList___default.a
-    },
+    // components:{
+    //     SingleItemList
+    // },
     data: function data() {
         return {
-            results: ''
+            results: {
+                name: '',
+                id: '',
+                code: '',
+                description: ''
+            }
         };
     },
     mounted: function mounted() {
@@ -53612,13 +53609,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('/api').then(function (response) {
             _this.results = response.data;
-            console.log(response.data);
+            // console.log(response.data)
         });
     },
 
     methods: {
-        onClick: function onClick() {
-            this.$refs.myModalRef.show();
+        onClick: function onClick(item) {
+            console.log(item.name);
+            this.$refs.myModalRef.show(item);
         },
         onSubmit: function onSubmit() {
             this.$refs.myModalRef.show();
@@ -53627,105 +53625,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 104 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(43)
-/* script */
-var __vue_script__ = __webpack_require__(105)
-/* template */
-var __vue_template__ = __webpack_require__(106)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/SingleItemList.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-270e7fa0", Component.options)
-  } else {
-    hotAPI.reload("data-v-270e7fa0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: "SingleItemList",
-    props: ["results"],
-    data: function data() {
-        return {
-            name: '',
-            id: '',
-            code: ''
-        };
-    },
-    mounted: function mounted() {
-        console.log(props.results);
-    },
-
-    methods: {}
-});
-
-/***/ }),
-/* 106 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_c("p", [_vm._v(_vm._s(_vm.props.results.name))])])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-270e7fa0", module.exports)
-  }
-}
-
-/***/ }),
+/* 104 */,
+/* 105 */,
+/* 106 */,
 /* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -53747,18 +53649,28 @@ var render = function() {
           _vm._v(" "),
           _c(
             "ul",
-            _vm._l(_vm.results, function(name) {
+            _vm._l(_vm.results, function(item) {
               return _c(
                 "li",
                 { staticStyle: { "list-style-type": "none" } },
                 [
-                  _c("b-btn", { on: { click: _vm.onClick } }, [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(name.name) +
-                        "\n                    "
-                    )
-                  ])
+                  _c(
+                    "b-btn",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.onClick(item)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(item.name) +
+                          "\n                    "
+                      )
+                    ]
+                  )
                 ],
                 1
               )
@@ -53769,11 +53681,13 @@ var render = function() {
             "b-modal",
             {
               ref: "myModalRef",
-              attrs: { id: "modal1", title: "{props.results.name}" }
+              attrs: {
+                results: _vm.results,
+                id: "modal1",
+                title: "{item.name}"
+              }
             },
             [
-              _c("single-item-list", { attrs: { results: _vm.results } }),
-              _vm._v(" "),
               _c("b-form-input", {
                 attrs: { type: "text", placeholder: "Enter your name" }
               }),
@@ -53781,9 +53695,7 @@ var render = function() {
               _c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])
             ],
             1
-          ),
-          _vm._v(" "),
-          _c("div")
+          )
         ],
         1
       )
