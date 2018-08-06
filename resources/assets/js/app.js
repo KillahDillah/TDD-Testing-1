@@ -14,4 +14,11 @@ new Vue({
     el: '#app',
     template: '<ItemList/>',
     components: { ItemList },
+    data: {
+        items: [
+            { name: 'Leah', description:'yesh'},
+            { name: 'Mila', description:'no'},
+            { name: 'Cat', description:'sup'},
+        ]
+    }
 });

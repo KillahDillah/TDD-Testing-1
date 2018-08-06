@@ -3,11 +3,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <h1>Item List View</h1>
-                <!-- <ul v-bind:item v-for="item in items">
-                    <li>
-                        {{item.name}}
+                <ul>
+                    <li v-for="name in results">
+                        {{name}}
                     </li>
-                </ul> -->
+                </ul>
                 
                 <div>
                     <b-btn @click="onClick">Launch demo modal</b-btn>
@@ -31,16 +31,20 @@ import SingleItemList from './SingleItemList';
         components:{
             SingleItemList
         },
+        data() {
+            return {
+                results: null
+            }
+        },
         mounted() {
-            axios.get('/api').then(response => {
+            axios
+            .get('/api')
+            .then(response => {
                 this.results = response.data
                 console.log(response.data)
             })
             console.log('Im the parent')
         },
-        // data(){
-
-        // },
         methods: {
             onClick() {
                 this.$refs.myModalRef.show()

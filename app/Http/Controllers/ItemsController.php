@@ -22,7 +22,7 @@ class ItemsController extends Controller
     public function show()
     {
         // $item = Item::getSingleItem($item_id);
-        return view('welcome');
+        return view('welcome', [ 'items' => Item::all()]);
     }
 
     public function create(Request $request)
