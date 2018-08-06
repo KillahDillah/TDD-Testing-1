@@ -63,10 +63,12 @@
     <body>
         <div id='app'>
             <h1>Welcome page</h1>
+
         <item-list></item-list>
         </div>   
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.3/axios.js"></script> -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
         <script src="/js/app.js"></script>  
     </body>

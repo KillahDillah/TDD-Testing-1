@@ -9,12 +9,20 @@ class ItemsController extends Controller
 {
 
     public function index() {
-        return view('welcome'); 
+        $item = Item::all();
+        return response()->json($item); 
+        // return view('welcome', $item);
     }
 
-    public function show($item)
+    // public function show($item)
+    // {
+    //     $item = Item::getSingleItem($item_id);
+    //     return response()->json($item);
+    // }
+    public function show()
     {
-        return $item;
+        // $item = Item::getSingleItem($item_id);
+        return view('welcome');
     }
 
     public function create(Request $request)

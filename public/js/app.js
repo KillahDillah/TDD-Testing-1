@@ -20109,23 +20109,27 @@ module.exports = __webpack_require__(219);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ItemList__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ItemList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ItemList__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ItemList__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ItemList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ItemList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue__ = __webpack_require__(105);
 
 __webpack_require__(75);
 
-window.Vue = __webpack_require__(98);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_bootstrap_vue__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
+
+// window.Vue = require('vue');
 
 
-// Vue.component('itemlist', ItemList);
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_1_bootstrap_vue__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_bootstrap_vue__["a" /* default */]);
 
-new Vue({
+new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     template: '<ItemList/>',
-    components: { ItemList: __WEBPACK_IMPORTED_MODULE_0__components_ItemList___default.a }
+    components: { ItemList: __WEBPACK_IMPORTED_MODULE_1__components_ItemList___default.a }
 });
 
 /***/ }),
@@ -53581,24 +53585,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'itemList',
-    data: {},
     components: {
         SingleItemList: __WEBPACK_IMPORTED_MODULE_0__SingleItemList___default.a
     },
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/api/items').then(function (response) {
+        axios.get('/api').then(function (response) {
             _this.results = response.data;
             console.log(response.data);
         });
         console.log('Im the parent');
     },
 
+    // data(){
+
+    // },
     methods: {
         onClick: function onClick() {
             this.$refs.myModalRef.show();
@@ -53616,51 +53628,37 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "data-table" }, [
     _c("div", { staticClass: "container" }, [
-      _c(
-        "div",
-        { staticClass: "row justify-content-center" },
-        [
-          _c("h1", [_vm._v("Item List View")]),
-          _vm._v(" "),
-          _c(
-            "div",
-            [
-              _c("b-btn", { on: { click: _vm.onClick } }, [
-                _vm._v("Launch demo modal")
-              ]),
-              _vm._v(" "),
-              _c(
-                "b-modal",
-                {
-                  ref: "myModalRef",
-                  attrs: { id: "modal1", title: "Bootstrap-Vue" }
-                },
-                [
-                  _c("b-form-input", {
-                    attrs: { type: "text", placeholder: "Enter your name" },
-                    model: {
-                      value: _vm.text1,
-                      callback: function($$v) {
-                        _vm.text1 = $$v
-                      },
-                      expression: "text1"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "my-4" }, [
-                    _vm._v("Hello from modal!")
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("single-item-list")
-        ],
-        1
-      )
+      _c("div", { staticClass: "row justify-content-center" }, [
+        _c("h1", [_vm._v("Item List View")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          [
+            _c("b-btn", { on: { click: _vm.onClick } }, [
+              _vm._v("Launch demo modal")
+            ]),
+            _vm._v(" "),
+            _c(
+              "b-modal",
+              {
+                ref: "myModalRef",
+                attrs: { id: "modal1", title: "Bootstrap-Vue" }
+              },
+              [
+                _c("single-item-list"),
+                _vm._v(" "),
+                _c("b-form-input", {
+                  attrs: { type: "text", placeholder: "Enter your name" }
+                }),
+                _vm._v(" "),
+                _c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
@@ -64578,12 +64576,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "SingleItemList",
+    // data: {
+
+    // },
     mounted: function mounted() {
         console.log('Component mounted.');
-    }
+    },
+
+    methods: {}
 });
 
 /***/ }),
@@ -64594,9 +64602,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Single Item List")])
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("h1", [_vm._v("Single Item List")])])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
