@@ -12,7 +12,7 @@
                         </b-btn>
                     </li>
                 </ul>
-                <b-modal id="modal1" ref="myModalRef" title="{name.name}">
+                <b-modal id="modal1" ref="myModalRef" title="{props.results.name}">
                     <single-item-list :results='results'></single-item-list>
                             <b-form-input 
                             type="text"
@@ -31,7 +31,7 @@
 <script>
 import SingleItemList from './SingleItemList';
     export default {
-        name:'itemList',
+        name:'ItemList',
         components:{
             SingleItemList
         },
@@ -45,7 +45,7 @@ import SingleItemList from './SingleItemList';
             .get('/api')
             .then(response => {
                 this.results = response.data
-                // console.log('itemlist',response.data)
+                console.log(response.data)
             })
         },
         methods: {

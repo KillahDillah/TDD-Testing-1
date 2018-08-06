@@ -53598,7 +53598,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'itemList',
+    name: 'ItemList',
     components: {
         SingleItemList: __WEBPACK_IMPORTED_MODULE_0__SingleItemList___default.a
     },
@@ -53612,7 +53612,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         axios.get('/api').then(function (response) {
             _this.results = response.data;
-            // console.log('itemlist',response.data)
+            console.log(response.data);
         });
     },
 
@@ -53693,13 +53693,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ["results"],
     data: function data() {
         return {
-            name: 'results name',
+            name: '',
             id: '',
             code: ''
         };
     },
     mounted: function mounted() {
-        console.log('Component mounted.');
+        console.log(props.results);
     },
 
     methods: {}
@@ -53713,16 +53713,9 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [_c("p", [_vm._v(_vm._s(_vm.props.results.name))])])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("p", [_vm._v("hello")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -53776,7 +53769,7 @@ var render = function() {
             "b-modal",
             {
               ref: "myModalRef",
-              attrs: { id: "modal1", title: "{name.name}" }
+              attrs: { id: "modal1", title: "{props.results.name}" }
             },
             [
               _c("single-item-list", { attrs: { results: _vm.results } }),

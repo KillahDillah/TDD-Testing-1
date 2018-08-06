@@ -1,7 +1,7 @@
 <template>
 <div>
-<p>hello</p>
-<!-- <p>{{this.results.name.name}}</p> -->
+
+<p>{{props.results.name}}</p>
 </div>
 
 </template>
@@ -12,13 +12,13 @@
         props: ["results"],
         data() {
             return {
-                name: 'results name',
+                name: '',
                 id: '',
                 code: ''
             }
         },
         mounted() {
-            console.log('Component mounted.')
+            console.log(props.results)
         },
         methods: {
 
