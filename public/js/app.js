@@ -53585,6 +53585,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 // import SingleItemList from './SingleItemList';
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53617,7 +53628,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onSubmit: function onSubmit() {
             this.$refs.myModalRef.show();
-        }
+        },
+        hideEditModal: function hideEditModal() {},
+        submitModal: function submitModal() {}
     }
 });
 
@@ -53676,22 +53689,69 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-modal",
-            { ref: "myModalRef", attrs: { id: "modal1", title: "this.name" } },
+            {
+              ref: "myModalRef",
+              attrs: { id: "modal1", title: "Edit User" },
+              on: { click: _vm.onSubmit }
+            },
             [
-              _c("b-form-input", {
-                attrs: { type: "text" },
-                model: {
-                  value: _vm.name,
-                  callback: function($$v) {
-                    _vm.name = $$v
-                  },
-                  expression: "name"
-                }
-              }),
+              _c(
+                "form",
+                [
+                  _c("label", { attrs: { for: "add-role-code" } }, [
+                    _vm._v("Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.name,
+                      callback: function($$v) {
+                        _vm.name = $$v
+                      },
+                      expression: "name"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "my-4" }, [_vm._v(_vm._s(_vm.name))])
+                ],
+                1
+              ),
               _vm._v(" "),
-              _c("p", { staticClass: "my-4" }, [_vm._v(_vm._s(this.name))])
+              _c(
+                "template",
+                { slot: "modal-footer" },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "btn-outline-secondary btn-md",
+                      on: { click: _vm.hideEditModal }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Cancel\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button",
+                    {
+                      staticClass: "btn-secondary text-light btn-md",
+                      on: { click: _vm.submitEdit }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Save\n                    "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
             ],
-            1
+            2
           )
         ],
         1

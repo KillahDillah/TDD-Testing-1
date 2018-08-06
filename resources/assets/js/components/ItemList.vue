@@ -12,9 +12,20 @@
                         </b-btn>
                     </li>
                 </ul>
-                <b-modal id="modal1" ref="myModalRef" title='this.name'>
-                    <b-form-input type="text" v-model="name"></b-form-input>
-                    <p class="my-4">{{this.name}}</p>
+                <b-modal id="modal1" ref="myModalRef" title='Edit User' @click="onSubmit">
+                    <form>
+                        <label for="add-role-code">Name</label>
+                        <b-form-input type="text" v-model="name"></b-form-input>
+                        <p class="my-4">{{name}}</p>
+                    </form>
+                    <template slot="modal-footer">
+                        <b-button @click="hideEditModal" class="btn-outline-secondary btn-md">
+                            Cancel
+                        </b-button>
+                        <b-button @click="submitEdit" class="btn-secondary text-light btn-md">
+                            Save
+                        </b-button>
+                    </template>
                 </b-modal>
             </div>
         </div>
@@ -49,9 +60,15 @@
             onClick(item) {
                 this.name = item.name
                 this.$refs.myModalRef.show(this.name)
-    },
+            },
             onSubmit() {
                 this.$refs.myModalRef.show()
+            },
+            hideEditModal() {
+
+            },
+            submitModal() {
+                
             }
         }
     }
