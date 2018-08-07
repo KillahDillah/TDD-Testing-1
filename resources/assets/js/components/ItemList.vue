@@ -25,7 +25,7 @@
                         <b-button @click="hideEditModal" class="btn-outline-secondary btn-md">
                             Cancel
                         </b-button>
-                        <b-button @click="submitModal" class="btn-secondary text-light btn-md">
+                        <b-button @click="submitModal(item)" class="btn-secondary text-light btn-md">
                             Save
                         </b-button>
                     </template>
@@ -61,17 +61,21 @@
         },
         methods: {
             onClick(item) {
+                this.showEditModal(item)
+            },
+            showEditModal(item){
                 this.name = item.name,
                 this.description = item.description,
                 this.code = item.code,
                 this.id = item.id,
-                this.$refs.myModalRef.show(this.name)
+                this.$refs.myModalRef.show(item)
             },
             hideEditModal() {
                 this.$refs.myModalRef.hide()
             },
             submitModal(item) {
-                axoios.put('/api/items/' + this.item.name, {
+                console.log(item)
+                axios.put('/api/items/' + this.id, {
                     'id': this.id,
                     'name': this.name,
                     'code': this.code,
@@ -83,6 +87,9 @@
                     // this.clearForm()
                     // this.hideEditModal ()
                     // this.fetch()
+                })
+                .catch((err) => {
+                    alert("There was an error with your edit", "danger")
                 })
             },
             clearForm(item) {
