@@ -60,8 +60,9 @@
             })
         },
         methods: {
-            onClick(item, name) {
-                this.showEditModal(item, name)
+            onClick(item) {
+
+                this.showEditModal(item)
             },
             showEditModal(item){
                 this.name = item.name,

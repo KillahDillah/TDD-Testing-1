@@ -53622,8 +53622,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onClick: function onClick(item, name) {
-            this.showEditModal(item, name);
+        onClick: function onClick(item) {
+
+            this.showEditModal(item);
         },
         showEditModal: function showEditModal(item) {
             this.name = item.name, this.description = item.description, this.code = item.code, this.id = item.id, this.$refs.myModalRef.show(item);
