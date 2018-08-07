@@ -20224,16 +20224,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ItemList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ItemList__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap_vue__ = __webpack_require__(108);
 
-__webpack_require__(76);
-
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.config.productionTip = false;
-
-// window.Vue = require('vue');
-
+__webpack_require__(76);
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_bootstrap_vue__["a" /* default */]);
 
+// window.Vue = require('vue');
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     template: '<ItemList/>',
@@ -53628,10 +53625,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         onClick: function onClick(item) {
             this.name = item.name, this.description = item.description, this.code = item.code, this.id = item.id, this.$refs.myModalRef.show(this.name);
         },
-
-        // onSubmit() {
-
-        // },
         hideEditModal: function hideEditModal() {
             this.$refs.myModalRef.hide();
         },
@@ -53784,7 +53777,7 @@ var render = function() {
                     "b-button",
                     {
                       staticClass: "btn-secondary text-light btn-md",
-                      on: { click: _vm.submitEdit }
+                      on: { click: _vm.submitModal }
                     },
                     [
                       _vm._v(

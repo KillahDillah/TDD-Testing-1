@@ -25,7 +25,7 @@
                         <b-button @click="hideEditModal" class="btn-outline-secondary btn-md">
                             Cancel
                         </b-button>
-                        <b-button @click="submitEdit" class="btn-secondary text-light btn-md">
+                        <b-button @click="submitModal" class="btn-secondary text-light btn-md">
                             Save
                         </b-button>
                     </template>
@@ -67,9 +67,6 @@
                 this.id = item.id,
                 this.$refs.myModalRef.show(this.name)
             },
-            // onSubmit() {
-                
-            // },
             hideEditModal() {
                 this.$refs.myModalRef.hide()
             },
