@@ -16,4 +16,4 @@ Route::get('/items', 'ItemsController@show');
 
 Route::put('/items/{item}', 'ItemsController@update');
 
-Route::delete('/items/{item}', 'ItemsController@delete');
+// Route::delete('/items/{item}', 'ItemsController@delete');

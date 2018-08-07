@@ -3,11 +3,11 @@
         <div class="container">
             <div class="col justify-content-center">
                 <h1>Item List View</h1>
-                <input type="text">
-                <b-btn>Add</b-btn>
+                <input type="text" v-model="name">
+                <b-btn @click="onClick('new-user')">Add</b-btn>
                 <ul>
                     <li v-for="item in results" style="list-style-type: none;">
-                        <b-btn @click="onClick(item)">
+                        <b-btn @click="onClick('update-user',item)">
                             {{item.name}}
                         </b-btn>
                     </li>
@@ -25,7 +25,7 @@
                         <b-button @click="hideEditModal" class="btn-outline-secondary btn-md">
                             Cancel
                         </b-button>
-                        <b-button @click="submitModal(item)" class="btn-secondary text-light btn-md">
+                        <b-button @click="submitModal()" class="btn-secondary text-light btn-md">
                             Save
                         </b-button>
                     </template>
@@ -60,8 +60,8 @@
             })
         },
         methods: {
-            onClick(item) {
-                this.showEditModal(item)
+            onClick(item, name) {
+                this.showEditModal(item, name)
             },
             showEditModal(item){
                 this.name = item.name,
@@ -73,20 +73,18 @@
             hideEditModal() {
                 this.$refs.myModalRef.hide()
             },
-            submitModal(item) {
-                console.log(item)
+            submitModal() {
                 axios.put('/api/items/' + this.id, {
                     'id': this.id,
                     'name': this.name,
                     'code': this.code,
                     'description': this.description,
-                    // 'status': this.status
                 })
                 .then((response) => {
                     alert("Saved", "success")
-                    // this.clearForm()
-                    // this.hideEditModal ()
-                    // this.fetch()
+                    this.clearForm()
+                    this.hideEditModal ()
+                    this.fetch()
                 })
                 .catch((err) => {
                     alert("There was an error with your edit", "danger")
@@ -99,6 +97,9 @@
                 this.id = '',
                 this.status = ''
             },
+            fetch() {
+                this.loading = true;
+            }
         }
     }
 </script>

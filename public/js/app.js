@@ -53622,8 +53622,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        onClick: function onClick(item) {
-            this.showEditModal(item);
+        onClick: function onClick(item, name) {
+            this.showEditModal(item, name);
         },
         showEditModal: function showEditModal(item) {
             this.name = item.name, this.description = item.description, this.code = item.code, this.id = item.id, this.$refs.myModalRef.show(item);
@@ -53631,25 +53631,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         hideEditModal: function hideEditModal() {
             this.$refs.myModalRef.hide();
         },
-        submitModal: function submitModal(item) {
-            console.log(item);
+        submitModal: function submitModal() {
+            var _this2 = this;
+
             axios.put('/api/items/' + this.id, {
                 'id': this.id,
                 'name': this.name,
                 'code': this.code,
                 'description': this.description
-                // 'status': this.status
             }).then(function (response) {
                 alert("Saved", "success");
-                // this.clearForm()
-                // this.hideEditModal ()
-                // this.fetch()
+                _this2.clearForm();
+                _this2.hideEditModal();
+                _this2.fetch();
             }).catch(function (err) {
                 alert("There was an error with your edit", "danger");
             });
         },
         clearForm: function clearForm(item) {
             this.name = '', this.code = '', this.description = '', this.id = '', this.status = '';
+        },
+        fetch: function fetch() {
+            this.loading = true;
         }
     }
 });
@@ -53670,9 +53673,38 @@ var render = function() {
         [
           _c("h1", [_vm._v("Item List View")]),
           _vm._v(" "),
-          _c("input", { attrs: { type: "text" } }),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.name,
+                expression: "name"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.name = $event.target.value
+              }
+            }
+          }),
           _vm._v(" "),
-          _c("b-btn", [_vm._v("Add")]),
+          _c(
+            "b-btn",
+            {
+              on: {
+                click: function($event) {
+                  _vm.onClick("new-user")
+                }
+              }
+            },
+            [_vm._v("Add")]
+          ),
           _vm._v(" "),
           _c(
             "ul",
@@ -53686,7 +53718,7 @@ var render = function() {
                     {
                       on: {
                         click: function($event) {
-                          _vm.onClick(item)
+                          _vm.onClick("update-user", item)
                         }
                       }
                     },
@@ -53782,7 +53814,7 @@ var render = function() {
                       staticClass: "btn-secondary text-light btn-md",
                       on: {
                         click: function($event) {
-                          _vm.submitModal(_vm.item)
+                          _vm.submitModal()
                         }
                       }
                     },
