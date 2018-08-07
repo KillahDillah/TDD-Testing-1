@@ -4,7 +4,7 @@
             <div class="col justify-content-center">
                 <h1>Item List View</h1>
                 <input type="text">
-                <b-btn @click="onSubmit">Add</b-btn>
+                <b-btn>Add</b-btn>
                 <ul>
                     <li v-for="item in results" style="list-style-type: none;">
                         <b-btn @click="onClick(item)">
@@ -12,11 +12,14 @@
                         </b-btn>
                     </li>
                 </ul>
-                <b-modal id="modal1" ref="myModalRef" title='Edit User' @click="onSubmit">
+                <b-modal id="modal1" ref="myModalRef" title='Edit User'>
                     <form>
                         <label for="add-role-code">Name</label>
                         <b-form-input type="text" v-model="name"></b-form-input>
-                        <p class="my-4">{{name}}</p>
+                        <label for="add-role-code">Description</label>
+                        <b-form-input type="text" v-model="description"></b-form-input>
+                        <label for="add-role-code">Code</label>
+                        <b-form-input type="text" v-model="code"></b-form-input>
                     </form>
                     <template slot="modal-footer">
                         <b-button @click="hideEditModal" class="btn-outline-secondary btn-md">
@@ -58,18 +61,40 @@
         },
         methods: {
             onClick(item) {
-                this.name = item.name
+                this.name = item.name,
+                this.description = item.description,
+                this.code = item.code,
+                this.id = item.id,
                 this.$refs.myModalRef.show(this.name)
             },
-            onSubmit() {
-                this.$refs.myModalRef.show()
-            },
-            hideEditModal() {
-
-            },
-            submitModal() {
+            // onSubmit() {
                 
-            }
+            // },
+            hideEditModal() {
+                this.$refs.editItem.hide()
+            },
+            submitModal(item) {
+                axoios.put('/api/items/' + this.item, {
+                    'id': this.id,
+                    'name': this.name,
+                    'code': this.code,
+                    'description': this.description,
+                    // 'status': this.status
+                })
+                .then((response) => {
+                    alert("Saved", "success")
+                    // this.clearForm()
+                    // this.hideEditModal ()
+                    // this.fetch()
+                })
+            },
+            clearForm(item) {
+                this.name = '',
+                this.code = '',
+                this.description = '',
+                this.id = '',
+                this.status = ''
+            },
         }
     }
 </script>

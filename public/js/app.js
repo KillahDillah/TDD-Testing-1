@@ -53596,6 +53596,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 // import SingleItemList from './SingleItemList';
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -53623,14 +53626,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         onClick: function onClick(item) {
-            this.name = item.name;
-            this.$refs.myModalRef.show(this.name);
+            this.name = item.name, this.description = item.description, this.code = item.code, this.id = item.id, this.$refs.myModalRef.show(this.name);
         },
-        onSubmit: function onSubmit() {
-            this.$refs.myModalRef.show();
+
+        // onSubmit() {
+
+        // },
+        hideEditModal: function hideEditModal() {
+            this.$refs.editItem.hide();
         },
-        hideEditModal: function hideEditModal() {},
-        submitModal: function submitModal() {}
+        submitModal: function submitModal(item) {
+            axoios.put('/api/items/' + this.item, {
+                'id': this.id,
+                'name': this.name,
+                'code': this.code,
+                'description': this.description
+                // 'status': this.status
+            }).then(function (response) {
+                alert("Saved", "success");
+                // this.clearForm()
+                // this.hideEditModal ()
+                // this.fetch()
+            });
+        },
+        clearForm: function clearForm(item) {
+            this.name = '', this.code = '', this.description = '', this.id = '', this.status = '';
+        }
     }
 });
 
@@ -53655,7 +53676,7 @@ var render = function() {
           _vm._v(" "),
           _c("input", { attrs: { type: "text" } }),
           _vm._v(" "),
-          _c("b-btn", { on: { click: _vm.onSubmit } }, [_vm._v("Add")]),
+          _c("b-btn", [_vm._v("Add")]),
           _vm._v(" "),
           _c(
             "ul",
@@ -53689,11 +53710,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "b-modal",
-            {
-              ref: "myModalRef",
-              attrs: { id: "modal1", title: "Edit User" },
-              on: { click: _vm.onSubmit }
-            },
+            { ref: "myModalRef", attrs: { id: "modal1", title: "Edit User" } },
             [
               _c(
                 "form",
@@ -53713,7 +53730,35 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _c("p", { staticClass: "my-4" }, [_vm._v(_vm._s(_vm.name))])
+                  _c("label", { attrs: { for: "add-role-code" } }, [
+                    _vm._v("Description")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.description,
+                      callback: function($$v) {
+                        _vm.description = $$v
+                      },
+                      expression: "description"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: "add-role-code" } }, [
+                    _vm._v("Code")
+                  ]),
+                  _vm._v(" "),
+                  _c("b-form-input", {
+                    attrs: { type: "text" },
+                    model: {
+                      value: _vm.code,
+                      callback: function($$v) {
+                        _vm.code = $$v
+                      },
+                      expression: "code"
+                    }
+                  })
                 ],
                 1
               ),
