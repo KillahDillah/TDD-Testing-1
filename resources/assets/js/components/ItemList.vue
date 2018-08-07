@@ -71,10 +71,10 @@
                 
             // },
             hideEditModal() {
-                this.$refs.editItem.hide()
+                this.$refs.myModalRef.hide()
             },
             submitModal(item) {
-                axoios.put('/api/items/' + this.item, {
+                axoios.put('/api/items/' + this.item.name, {
                     'id': this.id,
                     'name': this.name,
                     'code': this.code,
